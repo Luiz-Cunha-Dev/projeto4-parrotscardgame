@@ -5,11 +5,14 @@ body{
     background-color: #EEF9BF;
 }
 .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
     padding-left: 15%;
     padding-right: 15%;
-    
 }
 
 .titulo{
@@ -17,31 +20,24 @@ body{
     margin-bottom: 47px;
     text-align: center;
     font-family: 'Roboto';
-font-style: normal;
-font-weight: 700;
-font-size: 56px;
-line-height: 66px;
-letter-spacing: -0.004em;
-
-color: #75B79E;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+    color: #75B79E;
 }
 
-.espaco1{
-    width: 100%;
-display: flex ;
-align-items: center;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 34px;
-}
-
-.espaco2{
+.space{
     display: flex ;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    }
+    flex-wrap: wrap;
+}
 
-.carta{
+
+
+#card{
     width: 117px;
     height: 146px;  
     background: #A7E9AF;
@@ -50,5 +46,36 @@ margin-bottom: 34px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 34px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: all .5s;
 }
 
+
+#back{
+    transform: rotateY(180deg);  
+}
+
+.face{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.hidden{
+    display: none;
+}
+
+.flip{
+    transform: rotateY(180deg);  
+}
+
+img{
+    width: 100px;
+    height: 100px;
+}
