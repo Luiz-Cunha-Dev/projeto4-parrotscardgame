@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+  }
+body{
+    background-color: #EEF9BF;
+}
+.container {
+    width: 100%;
+    height: 100%;
+    padding-left: 15%;
+    padding-right: 15%;
+    
+}
+
+.titulo{
+    margin-top: 40px;
+    margin-bottom: 47px;
+    text-align: center;
+    font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 56px;
+line-height: 66px;
+letter-spacing: -0.004em;
+
+color: #75B79E;
+}
+
+.espaco1{
+    width: 100%;
+display: flex ;
+align-items: center;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 34px;
+}
+
+.espaco2{
+    display: flex ;
+    align-items: center;
+    justify-content: space-between;
+    }
+
+.carta{
+    width: 117px;
+    height: 146px;  
+    background: #A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
