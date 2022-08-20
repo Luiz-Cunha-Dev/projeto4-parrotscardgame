@@ -10,6 +10,8 @@ const imagens = [
 
 let qtdCartas;
 let baralho = [];
+let contador = 0;
+let contadorTentativas = 0;
 
 
 
@@ -73,19 +75,26 @@ const segundoParrot = segundaCarta.getAttribute('data-parrot');
 if(primeiroParrot === segundoParrot){
     primeiraCarta = "";
     segundaCarta = "";
+    contador++
+    contadorTentativas++
 }
 else{
-
     setTimeout(() => {
     primeiraCarta.classList.remove('flip');
     segundaCarta.classList.remove('flip');
     primeiraCarta = "";
     segundaCarta = "";
+    contadorTentativas++
     }, 1000);
+    
+}
+
+if(contador === qtdCartas/2){
+    setTimeout(() => {
+        alert(`Você ganhou em ${contadorTentativas} jogadas!`)}, 1000)
 }
 
 }
-
 
 
 let primeiraCarta = "";

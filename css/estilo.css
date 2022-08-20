@@ -77,3 +77,8 @@ img{
     width: 100px;
     height: 100px;
 }
+
+.cartaCorreta{
+    filter: saturate(0);
+    opacity: 0.5;
+}
