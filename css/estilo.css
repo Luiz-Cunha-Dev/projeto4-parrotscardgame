@@ -43,12 +43,12 @@ body{
     background: #A7E9AF;
     border: 1px solid #99CEA8;
     border-radius: 5px;
-
     margin: 34px;
     cursor: pointer;
     transform-style: preserve-3d;
     transition: all .5s;
 }
+
 
 
 #back{

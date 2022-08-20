@@ -1,6 +1,17 @@
+const imagens = [
+    'bobrossparrot.gif',
+    'explodyparrot.gif',
+    'fiestaparrot.gif',
+    'metalparrot.gif',
+    'revertitparrot.gif',
+    'tripletsparrot.gif',
+    'unicornparrot.gif'
+];
 
 let qtdCartas;
-const qtdMaxCartas = 14;
+let baralho = [];
+
+
 
 function inicial (){
 qtdCartas = prompt("Escolha o número de cartas: (número par entre 4-14)");
@@ -21,20 +32,85 @@ else if(qtdCartas%2 !== 0){
 
 inicial ();
 
-let cartasAmenos = qtdMaxCartas - qtdCartas
-
-function cartasTotal(){
-    
-    for(let i = 0; i < cartasAmenos; i++){
-        const cartas = document.querySelectorAll("#card");
-        cartas[i].classList.add('hidden')
-    }
+function comparador() { 
+	return Math.random() - 0.5; 
 }
 
-cartasTotal();
 
+function adicionaCartasNoDom(){
+
+    for(let i = 0; i < qtdCartas/2; i++){
+        baralho.push(imagens[i],imagens[i]);
+    }
+
+    const baralhoMisturado = baralho.sort(comparador);
+
+    const espaco = document.querySelector('.space');
+
+    for(let i = 0; i < qtdCartas; i++){
+
+        let carta = `<div onclick="flipCard(this)" id="card" data-parrot='${baralhoMisturado[i]}'>
+
+        <div class="face" id="front"><img src="imagens/front 9.png"></div>
+
+        <div class="face" id="back"><img src="imagens/${baralhoMisturado[i]}"></div>     
+    </div>
+    `;
+
+    espaco.innerHTML = espaco.innerHTML + carta;
+}
+}
+
+adicionaCartasNoDom()
+
+
+
+
+function compararCartas(){
+const primeiroParrot = primeiraCarta.getAttribute('data-parrot');
+const segundoParrot = segundaCarta.getAttribute('data-parrot');
+
+if(primeiroParrot === segundoParrot){
+    primeiraCarta = "";
+    segundaCarta = "";
+}
+else{
+
+    setTimeout(() => {
+    primeiraCarta.classList.remove('flip');
+    segundaCarta.classList.remove('flip');
+    primeiraCarta = "";
+    segundaCarta = "";
+    }, 1000);
+}
+
+}
+
+
+
+let primeiraCarta = "";
+let segundaCarta = "";
 
 function flipCard(card){
-    card.classList.add('flip')
-}
+    if(card.className.includes('flip')){
+        return;
+    }
 
+
+    if(primeiraCarta === ""){
+        card.classList.add('flip');
+        primeiraCarta = card;
+    }
+    else if(segundaCarta === ""){
+        card.classList.add('flip');
+        segundaCarta = card;
+        compararCartas()
+    }
+    
+    }
+
+
+
+function desvirarCarta(card){
+    card.classList.remove('flip');
+}
