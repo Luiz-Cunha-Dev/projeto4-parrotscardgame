@@ -19,13 +19,14 @@ body{
     margin-top: 40px;
     margin-bottom: 47px;
     text-align: center;
-    font-family: 'Roboto';
+    font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 56px;
     line-height: 66px;
     letter-spacing: -0.004em;
     color: #75B79E;
+    display: flex;
 }
 
 .space{
@@ -78,7 +79,49 @@ img{
     height: 100px;
 }
 
-.cartaCorreta{
-    filter: saturate(0);
-    opacity: 0.5;
+.cronometro{
+    width: 80px;
+    height: 50px;
+    border-radius: 30px;
+    border: thin;
+    background-color:#75B79E;
+    right: 100px;
+    top: 180px;
+    position: fixed;
+    top: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.004em;
+    color: white;
 }
+
+
+
+ @media (max-width: 950px){
+    .cronometro{
+        right: 50px;
+    }
+}
+
+@media (max-width: 525px){
+    .cronometro{
+        top: 180px;
+        right: 10px;
+    }
+    
+}
+
+@media (max-width: 450px){
+    .cronometro{
+        top: 240px;
+        right: 10px;
+    }
+}
+

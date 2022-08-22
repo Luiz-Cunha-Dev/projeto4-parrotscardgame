@@ -9,9 +9,13 @@ const imagens = [
 ];
 
 let qtdCartas;
-let baralho = [];
+let baralho;
+let baralhoMisturado
 let contador = 0;
 let contadorTentativas = 0;
+let id;
+let tempo;
+
 
 
 
@@ -30,22 +34,40 @@ else if(qtdCartas < 4){
 else if(qtdCartas%2 !== 0){
     inicial();
 }
+adicionaCartasNoDom()
 }
 
+
+
+
 inicial ();
+
+
 
 function comparador() { 
 	return Math.random() - 0.5; 
 }
 
 
+
+
+function iniciaCronometro(){
+    tempo = document.querySelector('.cronometro span');
+    tempo.innerHTML++;
+}
+
+
+
+
 function adicionaCartasNoDom(){
+    baralho = [];
+    baralhoMisturado = [];
 
     for(let i = 0; i < qtdCartas/2; i++){
         baralho.push(imagens[i],imagens[i]);
     }
 
-    const baralhoMisturado = baralho.sort(comparador);
+    baralhoMisturado = baralho.sort(comparador);
 
     const espaco = document.querySelector('.space');
 
@@ -61,9 +83,15 @@ function adicionaCartasNoDom(){
 
     espaco.innerHTML = espaco.innerHTML + carta;
 }
+
+id = setInterval(iniciaCronometro, 1000);
 }
 
-adicionaCartasNoDom()
+
+
+
+
+
 
 
 
@@ -73,10 +101,14 @@ const primeiroParrot = primeiraCarta.getAttribute('data-parrot');
 const segundoParrot = segundaCarta.getAttribute('data-parrot');
 
 if(primeiroParrot === segundoParrot){
+    setTimeout(() => {
+        primeiraCarta.children[1].children[0].setAttribute('src', 'imagens/certo.png');
+        segundaCarta.children[1].children[0].setAttribute('src', 'imagens/certo.png');
     primeiraCarta = "";
     segundaCarta = "";
-    contador++
-    contadorTentativas++
+}, 800);
+contador++
+contadorTentativas++
 }
 else{
     setTimeout(() => {
@@ -86,19 +118,57 @@ else{
     segundaCarta = "";
     contadorTentativas++
     }, 1000);
-    
 }
 
 if(contador === qtdCartas/2){
     setTimeout(() => {
-        alert(`Você ganhou em ${contadorTentativas} jogadas!`)}, 1000)
+        clearInterval(id);
+        alert(
+        `Você ganhou em ${contadorTentativas} jogadas!
+
+Tempo total: ${tempo.innerHTML} segundos`
+        )
+       jogarNovamente();
+    }, 1000);
+        
 }
 
 }
+
+
+
+
+
+function jogarNovamente(){
+    let recomecar = prompt('Gostaria de jogar novamente? (responda com sim ou não)')
+    if (recomecar === "sim"){
+        contadorTentativas = 0;
+        contador = 0;
+        tempo.innerHTML = 0;
+        for(let i = 0; i < qtdCartas; i++){
+            const espaco = document.querySelectorAll('.space div');
+            espaco[0].remove();
+        }
+      
+        inicial ();
+    }else if(recomecar === "não"){
+        return;
+    }else{
+        jogarNovamente();
+    }
+}
+
+
+
 
 
 let primeiraCarta = "";
 let segundaCarta = "";
+
+
+
+
+
 
 function flipCard(card){
     if(card.className.includes('flip')){
@@ -120,6 +190,4 @@ function flipCard(card){
 
 
 
-function desvirarCarta(card){
-    card.classList.remove('flip');
-}
+
