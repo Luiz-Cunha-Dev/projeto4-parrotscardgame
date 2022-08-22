@@ -34,7 +34,10 @@ else if(qtdCartas < 4){
 else if(qtdCartas%2 !== 0){
     inicial();
 }
-adicionaCartasNoDom()
+else{
+    adicionaCartasNoDom()
+}
+
 }
 
 
